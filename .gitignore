@@ -1,0 +1,4 @@
+./backend/__pycache__/
+./backend/itam_messenger_env/
+.env
+./backend/debug.ipynb
