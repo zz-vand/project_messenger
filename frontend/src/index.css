@@ -16,7 +16,6 @@ body {
   max-width: 50%;
   max-height: 50%;
   padding: 20px;
-  margin-right: 20px; 
 }
 
 .img img {
@@ -35,8 +34,6 @@ body {
   height: 100%;
   padding: 15px;
   gap: 5px;
-  display: flex; /* Используем flexbox для выравнивания элементов по горизонтали */
-  align-items: center; /* Вертикальное выравнивание по центру */
 
 }
 
@@ -131,22 +128,29 @@ p a {
 }
 
 @keyframes bounce {
-  0%, 20%, 60%, 100% {
-    transform: translateY(0);
-    transform: translateY(0);
-  }
+	0%, 20%, 60%, 100% {
+		transform: translateY(0);
+		transform: translateY(0);
+	}
 
-  40% {
-    transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
+	40% {
+		transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
 
-  80% {
-    transform: translateY(-10px);
-    transform: translateY(-10px);
-  }
+	80% {
+		transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
 }
 
 button:hover {
+	animation: bounce 1s;
+}
+
+img:hover {
   animation: bounce 1s;
 }
+
+
+
