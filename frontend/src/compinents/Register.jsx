@@ -1,8 +1,7 @@
 import React from 'react'
 import RegisterModal from "./RegisterModal"
-import SignUpmodal from './SignUpmodal'
 
-export default function SignUp() {
+export default function Register() {
   return (
     <div>
         <body>
@@ -10,7 +9,7 @@ export default function SignUp() {
                 <div className="img">
                   <img src={`${process.env.PUBLIC_URL}/Group 18.png`} alt="Group 18" />
                 </div>
-                <SignUpmodal/>
+                <RegisterModal/>
             </div>
         </body>
     </div>

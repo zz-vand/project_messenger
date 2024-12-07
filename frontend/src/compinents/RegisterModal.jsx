@@ -1,25 +1,25 @@
 import React, { useState} from 'react'
 import { Link } from 'react-router-dom';
 
-const SignUpmodal = () => {
+const RegisterModal = () => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const [isValidPassword, setisValidPassword] = useState("");
+    const [success, setSuccess] = useState("");
 
-    const checkPassword = async (loginData) => {
+    const CreateNewAcc = async (RegisterData) => {
         try {
             const response = await fetch('', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(loginData),
+                body: JSON.stringify(RegisterData),
             });
             const data = await response.json();
             if (data.isValid) {
-                setisValidPassword(true);
+                setSuccess(true);
             } else {
-                setisValidPassword(false);
+                setSuccess(false);
             }
         } catch (error) {
             console.error(error);
@@ -36,11 +36,11 @@ const SignUpmodal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const loginData = {
+        const RegisterData = {
             username: username,
             password: password
         };
-        checkPassword(loginData);
+        CreateNewAcc(RegisterData);
     };
 
     return (
@@ -48,7 +48,7 @@ const SignUpmodal = () => {
             <form onSubmit={handleSubmit}>
                 <div className="sign_up">
                             <div className="place">
-                                <h2>Войти в аккаунт</h2>
+                                <h2>Регистрация</h2>
                                 <div className="input1">
                                     <label className="name" for="username">Имя пользователя</label>
                                     <input
@@ -65,16 +65,14 @@ const SignUpmodal = () => {
                                     value={password}
                                     onChange={handleChange}
                                     />
-                                    <label className="pass" for="password"><a href="#">Забыли пароль?</a></label>
                                 </div>
-                                <button type="submit" className="btn">Войти</button>
-                                <p>У вас нет аккаунта? <Link to="register">Зарегистрироваться</Link></p>
+                                <button type="submit" className="btn">Зарегистрироваться</button>
+                                <p>Уже есть аккаунт? <Link to="signup">Войти</Link></p>
                             </div>
                         </div>
             </form>
-            {isValidPassword ? <p>Password is valid</p> : <p>Password is invalid</p>}
         </div>
 
   )
 }
-export default SignUpmodal;
+export default RegisterModal;
