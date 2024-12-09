@@ -1,7 +1,8 @@
-from sqlalchemy import Text, ForeignKey, DateTime, BigInteger, Column
-from sqlalchemy.orm import relationship
+from sqlalchemy import Text, ForeignKey, DateTime, BigInteger, Column, TIMESTAMP
+from sqlalchemy.orm import relationship, mapped_column
 from datetime import datetime
 from persistent.db.base import Base
+from sqlalchemy.sql import func
 import uuid
 
 
@@ -13,7 +14,7 @@ class User(Base):
     status = Column(Text)
     photo = Column(Text) #text_link
     password = Column(Text, nullable=False) #text_hash
-    created_at = Column(DateTime, nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.current_timestamp(), nullable=False)
     coockie_token = Column(Text) #uuid 
     
 
@@ -25,7 +26,8 @@ class Message(Base):
     id = Column(BigInteger, primary_key=True, nullable=False, autoincrement=True)
     chat_id = Column(BigInteger, ForeignKey("chat.id", ondelete="CASCADE"), nullable=False)
     user_id = Column(BigInteger, ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
-    created_at = Column(DateTime, nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.current_timestamp(), nullable=False)
+    content = Column(Text)
 
     user = relationship("User", back_populates="messages")
     chat = relationship("Chat", back_populates="messages")
@@ -36,7 +38,7 @@ class Chat(Base):
     id = Column(BigInteger, primary_key=True, nullable=False, autoincrement=True)
     chat_name = Column(Text)
     photo = Column(Text) # Pohot link
-    created_at = Column(DateTime, nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.current_timestamp(), nullable=False)
 
     messages = relationship("Message", back_populates="chat")
     members = relationship("Member", back_populates="chat")
@@ -47,7 +49,7 @@ class Member(Base):
     id = Column(BigInteger, autoincrement=True, primary_key=True, nullable=False)
     chat_id = Column(BigInteger, ForeignKey("chat.id", ondelete="CASCADE"), nullable=False)
     user_id = Column(BigInteger, ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
-    added_at = Column(DateTime, nullable=False)
+    added_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.current_timestamp(), nullable=False)
     role = Column(Text) # owner, admin, plain
 
     chat = relationship("Chat", back_populates="members")
