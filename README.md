@@ -1,16 +1,14 @@
-## Messenger for ITAM competition
+## Проект - мессенджер для конкурса ITAM
 
-A real-time messaging platform built with modern web technologies for secure communication.
+### ✨ Основная информация
 
-### ✨ Key Features
+- **Чат с пользователями в реальном времени**
+- **Передача сообщения на основе технологии WebSocket(<200ms latency)**
+- **Регистрация и поиск пользователя по username**
+- **Доступ к мессенджеру из браузера**
 
-- **Real-Time Communication**
-  - WebSocket-based messaging (<200ms latency)
-  - Typing indicators and read receipts
-  - Online presence detection
-
-
-### 🛠 Tech Stack
+- 
+### 🛠 Стэк
 
 | Component          | Technology Stack                   |
 |--------------------|------------------------------------|
